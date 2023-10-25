@@ -12,21 +12,27 @@
 .Flex {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
 }
 .Flex_c {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
+
 .w-30 {
   width: 30%;
+}
+.pl_13 {
+  padding-left: 13%;
 }
 .p_07 {
   padding: 0 7%;
 }
-.p_70 {
-  margin: 7% 0;
+.m_70 {
+  margin: 50px 0;
+}
+.m_40 {
+  margin: 40px 0;
 }
 
 .gap {
