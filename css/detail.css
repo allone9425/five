@@ -33,6 +33,16 @@
   display: grid;
   gap: 20% 0;
 }
-.font30 {
+.font50 {
+  font-size: 50px;
+}
+.font40 {
+  font-size: 40px;
+}
+.font25 {
   font-size: 30px;
+}
+.review_btn {
+  width: auto;
+  height: 60px;
 }
