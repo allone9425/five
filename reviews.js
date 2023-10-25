@@ -38,6 +38,7 @@ document
       pw: reviewPassword,
       comments: reviewComments,
       rate: reviewRate,
+      like: 0,
     };
     const reviewObjectString = JSON.stringify(reviewObject);
 
@@ -138,15 +139,17 @@ const addCard = () => {
       <div class="text-area">
         <p>
           ${reviewData.comments} </p>
+          
+          <textarea class="text-modify"></textarea>
       </div>
 
       <div class="card-container__card-check-good">
         <div>
           <figure><img src="./images/reviews_good.svg" /></figure>
-          <span>0</span>
+          <span>${reviewData.like}</span>
         </div>
-        <button class="like-button">좋아요</button>
-        <button class="btn_modify" data-key="${CardKey}">수정</button>
+        <button class="like-btn" data-key="${CardKey}">좋아요</button>
+        <button class="btn_modify" type="button" data-key="${CardKey}">수정</button>
         <button class="btn_delete" data-key="${CardKey}">삭제</button>
       </div>
     </div>
@@ -161,6 +164,20 @@ const addCard = () => {
 // 각 카드 생성하고 화면에 추가하기
 document.addEventListener("DOMContentLoaded", addCard());
 
+const toggleLike = function (id) {
+  let likeCount = localStorage.getItem(id);
+  let reviewData = JSON.parse(likeCount); // 객체로 생긴 문자열을 객체타입으로
+  reviewData["like"] = reviewData["like"] + 1;
+  let changeReviewData = JSON.stringify(reviewData);
+  localStorage.setItem(id, changeReviewData);
+};
+
+document.addEventListener("click", function (e) {
+  if (e.target && e.target.classList.contains("like-btn")) {
+    toggleLike(e.target.dataset["key"]);
+  }
+});
+
 document.querySelectorAll(".btn_delete").forEach((item) => {
   item.addEventListener("click", function () {
     localStorage.removeItem(item.dataset["key"]);
@@ -170,7 +187,18 @@ document.querySelectorAll(".btn_delete").forEach((item) => {
 
 document.querySelectorAll(".btn_modify").forEach((item) => {
   item.addEventListener("click", function () {
-    console.log(item.dataset[key]);
-    window.location.reload();
+    //수정할 대상의 Key를 가져오기
+    const key = item.dataset.key;
+    // 해당 Key에 저장된 데이터 가져오기
+    const reviewCard = localStorage.getItem(key);
+    let reviewData = JSON.parse(reviewCard);
+    //textarea 변수 저장 textarea 클래스명 : .text-modify
+    let textModify = document.querySelector(".text-modify").value;
+    //textarea에 담은 데이터를 reviewData.text에 저장함
+    reviewData.comments = textModify;
+    //reviewData.push("텍스트"); -> 실패 ㅠ
+    console.log("reviewData.text는" + reviewData.comments); //첫번째 입력값만 됨
+    console.log("reviewData는" + reviewData);
+    console.log("item.dataset[key]는" + item.dataset["key"]); //각각 맞게 찍힘
   });
 });

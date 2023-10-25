@@ -457,3 +457,9 @@
   color: #ff7591;
   font-weight: bold;
 }
+
+.text-modify {
+  border: none;
+  margin-top: 60px;
+  resize: none;
+}
