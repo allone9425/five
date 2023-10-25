@@ -26,13 +26,14 @@ document
       alert("비속어가 포함되었습니다. 다시 입력해주세요");
       return;
     }
-
-    const reviewObjectString = `
-    {\"user\":${reviewUser},
-    \"pw\":${reviewPassword},
-    \"comments\":${reviewComments},
-    \"rate\":${reviewRate},}
-    `;
+    // 리뷰 정보를 JSON.stringify를 이용하여 문자열화.
+    const reviewObject = {
+      user: reviewUser,
+      pw: reviewPassword,
+      comments: reviewComments,
+      rate: reviewRate,
+    };
+    const reviewObjectString = JSON.stringify(reviewObject);
 
     // localStorage 중 현재 ID의 영화 리뷰 키를 필터링하는 코드
     const thisMovieReviews = Object.keys(localStorage).filter((review) =>
@@ -55,10 +56,6 @@ document
     }
   });
 
-//좋아요 버튼
-let likeBtn = document.getElementById("like-btn");
-let likeCounter = document.getElementById("like-count");
-
 // 별점 숫자 표시
 document.querySelectorAll(".star_radio").forEach((item) => {
   item.addEventListener("change", function () {
@@ -68,24 +65,6 @@ document.querySelectorAll(".star_radio").forEach((item) => {
   });
 });
 
-//로컬 스토리지에서 좋아요~ 상태 불러옴
-let isLiked = localStorage.getItem("isLiked") === "true" || false;
-let likeCount = parseInt(localStorage.getItem("likeCount")) || 0;
-
-function toggleLike() {
-  isLiked = !isLiked;
-  likeCount = isLiked ? likeCount + 1 : likeCount - 1;
-
-  localStorage.setItem("isLiked", isLiked);
-  localStorage.setItem("likeCount", likeCount);
-
-  updateLike();
-}
-
-// const updateLike = () =>{
-//   likeBtn.
-// }
-
 // 탑버튼
 document.querySelector(".btn_top").addEventListener("click", function (event) {
   event.preventDefault();
@@ -94,6 +73,24 @@ document.querySelector(".btn_top").addEventListener("click", function (event) {
     behavior: "smooth",
   });
 });
+
+let isLiked = localStorage.getItem("isLiked") === "true" || false;
+let likeCount = parseInt(localStorage.getItem("likeCount")) || 0;
+
+/* function toggleLike() {
+  isLiked = !isLiked;
+  likeCount = isLiked ? likeCount + 1 : likeCount - 1;
+
+  localStorage.setItem("isLiked", isLiked);
+  localStorage.setItem("likeCount", likeCount);
+
+  updateLike();
+} */
+
+const likeButton = document.getElementById("like-btn");
+const likeCounter = document.getElementById("like-count");
+
+function updateLike() {}
 
 //검색버튼 누르면 되게하기
 document
@@ -125,4 +122,56 @@ nav_search.addEventListener("click", function () {
     });
 });
 
-const addCard = () => {};
+const addCard = () => {
+  const card_box = document.querySelector(".card-container__card");
+  const thisMovieReviews = Object.keys(localStorage).filter((review) =>
+    // 영화 고유한 id가 들어가야함
+    review.includes("123")
+  );
+
+  console.log(thisMovieReviews);
+
+  thisMovieReviews.forEach((CardKey) => {
+    //데이터 불러오기
+    const reviewCard = localStorage.getItem(CardKey);
+    console.log(reviewCard);
+    let reviewData = JSON.parse(reviewCard);
+    //만들기
+    let temp = `
+    <li>
+    <div class="card-container__card">
+      <div class="card-container__card-first-line">
+        <div>
+          <figure><img src="./images/reviews_user.svg" /></figure>
+          <span>${reviewData.user}</span>
+        </div>
+        <div class="card-container__card-rate">
+          <figure><img src="./images/reviews_star.svg" /></figure>
+          <span>${reviewData.rate}</span>
+        </div>
+      </div>
+      <div class="text-area">
+        <p>
+          ${reviewData.comments} </p>
+      </div>
+
+      <div class="card-container__card-check-good">
+        <div>
+          <figure><img src="./images/reviews_good.svg" /></figure>
+          <span>670</span>
+        </div>
+        <button>좋아요</button>
+      </div>
+    </div>
+  </li>
+    `;
+    document
+      .querySelector(".card-container ul")
+      .insertAdjacentHTML("beforeend", temp);
+  });
+};
+
+// 각 카드 생성하고 화면에 추가하기
+document.addEventListener("DOMContentLoaded", addCard());
+
+// console.log(JSON.parse(로컬스토리지 키에 대한 값));
