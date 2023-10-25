@@ -22,9 +22,9 @@ document
     const reviewComments = document.querySelector(".review_input_text").value;
 
     slangFilter(reviewComments);
-    // localStorage.setItem(`${"movieId"}_user`, reviewUser);
-    // localStorage.setItem(`${"movieId"}_pw`, reviewPassword);
-    // localStorage.setItem(`${"movieId"}_comments`, reviewComments);
+    localStorage.setItem(`${"movieId"}_user`, reviewUser);
+    localStorage.setItem(`${"movieId"}_pw`, reviewPassword);
+    localStorage.setItem(`${"movieId"}_comments`, reviewComments);
   });
 
 document
