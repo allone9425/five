@@ -78,7 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
       //
       movie_cards_box.forEach(function (card) {
         card.addEventListener("click", function () {
-          alert("선택한 영화: " + card.id);
+          // alert("선택한 영화: " + card.id); // ID alert창 -> 상세페이지 이동으로 변경
+          let movieId = this.id;
+          let movieDetailUrl = `detail.html?id=${movieId}`;
+          window.location.href = movieDetailUrl;
         });
       });
     });
