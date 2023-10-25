@@ -129,12 +129,9 @@ const addCard = () => {
     review.includes("123")
   );
 
-  console.log(thisMovieReviews);
-
   thisMovieReviews.forEach((CardKey) => {
     //데이터 불러오기
     const reviewCard = localStorage.getItem(CardKey);
-    console.log(reviewCard);
     let reviewData = JSON.parse(reviewCard);
     //만들기
     let temp = `
