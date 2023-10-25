@@ -181,9 +181,30 @@ document.addEventListener("click", function (e) {
 
 document.querySelectorAll(".btn_delete").forEach((item) => {
   item.addEventListener("click", function () {
-    localStorage.removeItem(item.dataset["key"]);
-    window.location.reload();
+    document.querySelector(".check_pw").dataset["key"] = item.dataset["key"];
+    document.querySelector(".check_pw").style.display = "block";
+    // localStorage.removeItem(item.dataset["key"]);
+    // window.location.reload();
   });
+});
+
+// 삭제 이벤트, 비밀번호 비교 후 삭제
+document.querySelector(".check_pw_btn").addEventListener("click", function () {
+  const localStoragePW = JSON.parse(
+    localStorage.getItem(this.parentElement.dataset["key"])
+  )["pw"];
+  const userInputPW = document.querySelector(".check_pw_input").value;
+  console.log(localStoragePW);
+  if (localStoragePW === userInputPW) {
+    const result = confirm("정말 삭제하시겠습니까?");
+    if (result) {
+      localStorage.removeItem(this.parentElement.dataset["key"]);
+      window.location.reload();
+      return;
+    }
+  } else {
+    alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요");
+  }
 });
 
 document.querySelectorAll(".btn_modify").forEach((item) => {
