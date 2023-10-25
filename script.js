@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let movie_id = movie_box["id"];
 
         let movie_year = movie_date.substring(0, 4); //2023-10-10 이렇게 나오는것을 2023만 출력하기 위해서 사용
-
+        //let movie_title_small = movie_title.substring(0, 20);
         let temp_html = `    <div class="card" id="${movie_id}">
                             <p><img src="https://image.tmdb.org/t/p/original${movie_poster}"></p>
                             <h3 class="title">${movie_title}</h3>

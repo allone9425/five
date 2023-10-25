@@ -172,14 +172,13 @@
 }
 
 /*별점*/
-.star_rating {
-}
+
 .starpoint_wrap {
   background-color: transparent;
   height: 64px;
   border-bottom: 3px solid #ff7591;
   overflow: hidden;
-  padding: 0 50px;
+  /*padding: 0 50px;*/
 }
 .starpoint_wrap .starpoint_box {
   position: relative;
@@ -290,16 +289,91 @@
   overflow: hidden;
 }
 
+.star_rating_number {
+  font-size: 3.5rem;
+  background-color: #ff7591;
+  color: #fff;
+  padding: 16px;
+  margin: 0;
+  height: 35px;
+  border-radius: 10px;
+  margin-left: 15px;
+  width: 52px;
+  text-align: center;
+}
+
 @media all and (max-width: 1910px) {
   .starpoint_wrap {
     padding: 0;
   }
 }
-
+@media all and (max-width: 1899px) {
+  .review_input_name {
+    width: 39%;
+  }
+}
+@media all and (max-width: 1838px) {
+  .review_input_name {
+    width: 38%;
+  }
+}
+@media all and (max-width: 1781px) {
+  .review_input_name {
+    width: 36%;
+  }
+}
+@media all and (max-width: 1676px) {
+  .review_input_name {
+    width: 34%;
+  }
+}
+@media all and (max-width: 1583px) {
+  .review_input_name {
+    width: 32%;
+  }
+}
+@media all and (max-width: 1499px) {
+  .review_input_name {
+    width: 30%;
+  }
+}
 @media all and (max-width: 1428px) {
   .star_rating {
     margin-bottom: 15px;
   }
+
+  .review_input_name {
+    width: 28%;
+  }
+  .review_input_pw {
+    width: 28%;
+  }
+}
+@media all and (max-width: 1295px) {
+  .review_input_name {
+    width: 25%;
+  }
+  .review_input_pw {
+    width: 25%;
+  }
+}
+@media all and (max-width: 1139px) {
+  .review_input_name {
+    width: 22%;
+  }
+  .review_input_pw {
+    width: 22%;
+  }
+}
+@media all and (max-width: 1017px) {
+  .review_input_name {
+    width: 20%;
+  }
+  .review_input_pw {
+    width: 20%;
+  }
+}
+@media all and (max-width: 949px) {
   .review_input_name {
     width: 50%;
   }
@@ -307,7 +381,6 @@
     width: 50%;
   }
 }
-
 #review_btn_open {
   background-color: #ff7591;
   color: #fff;
@@ -323,4 +396,16 @@
   color: #000;
   font-weight: bold;
   background-color: #ddd;
+}
+
+#like-btn {
+  border: none;
+  color: #ff7591;
+  cursor: pointer;
+}
+
+.liked {
+  color: white;
+  background-color: #ff7591;
+  border-radius: 4px;
 }
