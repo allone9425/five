@@ -409,3 +409,51 @@
   background-color: #ff7591;
   border-radius: 4px;
 }
+
+.check_pw {
+  background-color: #ddd;
+  width: 30%;
+  padding: 50px 20px;
+  text-align: center;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  border-radius: 10px;
+}
+
+.check_pw .check_pw_input {
+  border: none;
+  padding: 10px;
+  margin: 20px;
+  outline: none;
+  font-size: 2rem;
+}
+.check_pw p {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.check_pw .check_pw_btn,
+.check_pw_btn_close {
+  padding: 10px 20px;
+  border-radius: 3px;
+  background-color: #ff7591;
+  color: #fff;
+  font-size: 2rem;
+  border: none;
+  margin: 0 5px;
+}
+.check_pw .check_pw_btn:hover {
+  background-color: #fff;
+  color: #ff7591;
+  font-weight: bold;
+}
+.check_pw .check_pw_btn_close:hover {
+  background-color: #fff;
+  color: #ff7591;
+  font-weight: bold;
+}

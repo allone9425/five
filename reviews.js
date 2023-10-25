@@ -8,6 +8,12 @@ document
   });
 
 document
+  .querySelector(".check_pw_btn_close")
+  .addEventListener("click", function () {
+    document.querySelector(".check_pw").style.display = "none";
+  });
+
+document
   .getElementById("review_btn_open")
   .addEventListener("click", function () {
     document.querySelector(".review_input_box").style.display = "block";
@@ -16,7 +22,6 @@ document
 document
   .querySelector(".review_input_box_frame")
   .addEventListener("submit", function (e) {
-    e.preventDefault();
     const reviewUser = document.querySelector(".review_input_name").value;
     const reviewPassword = document.querySelector(".review_input_pw").value;
     const reviewComments = document.querySelector(".review_input_text").value;
@@ -24,6 +29,7 @@ document
 
     if (slangFilter(reviewComments)) {
       alert("비속어가 포함되었습니다. 다시 입력해주세요");
+      e.preventDefault();
       return;
     }
     // 리뷰 정보를 JSON.stringify를 이용하여 문자열화.
@@ -73,24 +79,6 @@ document.querySelector(".btn_top").addEventListener("click", function (event) {
     behavior: "smooth",
   });
 });
-
-let isLiked = localStorage.getItem("isLiked") === "true" || false;
-let likeCount = parseInt(localStorage.getItem("likeCount")) || 0;
-
-/* function toggleLike() {
-  isLiked = !isLiked;
-  likeCount = isLiked ? likeCount + 1 : likeCount - 1;
-
-  localStorage.setItem("isLiked", isLiked);
-  localStorage.setItem("likeCount", likeCount);
-
-  updateLike();
-} */
-
-const likeButton = document.getElementById("like-btn");
-const likeCounter = document.getElementById("like-count");
-
-function updateLike() {}
 
 //검색버튼 누르면 되게하기
 document
@@ -155,9 +143,11 @@ const addCard = () => {
       <div class="card-container__card-check-good">
         <div>
           <figure><img src="./images/reviews_good.svg" /></figure>
-          <span>670</span>
+          <span>0</span>
         </div>
-        <button>좋아요</button>
+        <button class="like-button">좋아요</button>
+        <button class="btn_modify" data-key="${CardKey}">수정</button>
+        <button class="btn_delete" data-key="${CardKey}">삭제</button>
       </div>
     </div>
   </li>
@@ -171,4 +161,16 @@ const addCard = () => {
 // 각 카드 생성하고 화면에 추가하기
 document.addEventListener("DOMContentLoaded", addCard());
 
-// console.log(JSON.parse(로컬스토리지 키에 대한 값));
+document.querySelectorAll(".btn_delete").forEach((item) => {
+  item.addEventListener("click", function () {
+    localStorage.removeItem(item.dataset["key"]);
+    window.location.reload();
+  });
+});
+
+document.querySelectorAll(".btn_modify").forEach((item) => {
+  item.addEventListener("click", function () {
+    console.log(item.dataset[key]);
+    window.location.reload();
+  });
+});
