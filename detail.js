@@ -24,37 +24,37 @@ await fetch(movieDetailUrl, options)
     let movie_rating = data["vote_average"];
     let movie_poster = data["poster_path"];
     let movie_date = data["release_date"];
-    let movie_;
+    let movie_genres = data["genres"];
     console.log(data);
 
     // 아래에 제목, 평점 등등 구간에 맞게 데이터 넣기
-    let html = `
+    let temp_html = `
     <div class="">
-    <img class="" src="" alt="" />
+    <img class="w-30" src="https://image.tmdb.org/t/p/original${movie_poster}"/>
     <div class="">
-      <div class="">
-        <h1 class=""></h1>
-        <h1 class=""></h1>
+      <div class="Flex_c p_07 font40">
+        <h1 class="">영화제목</h1>
+        <h1 class="">${movie_title}</h1>
       </div>
-      <div class="">
+      <div class="gap font50">
         <div>
-          <span class=""></span>
-          <span></span>
+          <span class="">개봉 :</span>
+          <span>${movie_date}</span>
         </div>
         <div>
-          <span class=""></span>
-          <span></span>
+          <span class="">장르 :</span>
+          <span>${movie_genres}</span>
         </div>
         <div>
-          <span class=""></span>
-          <span></span>
+          <span class="">등급 :</span>
+          <span>19세 이상관람가능</span>
         </div>
         <div>
-          <span class=""></span>
-          <span>6.4</span>
+          <span class="">평점 :</span>
+          <span>${movie_rating}</span>
         </div>
         <div>
-          <span class=""></span>
+          <span class="">누적관객 :</span>
           <span></span>
         </div>
       </div>
