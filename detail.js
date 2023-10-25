@@ -24,6 +24,42 @@ await fetch(movieDetailUrl, options)
     let movie_rating = data["vote_average"];
     let movie_poster = data["poster_path"];
     let movie_date = data["release_date"];
+    let movie_;
     console.log(data);
+
+    // 아래에 제목, 평점 등등 구간에 맞게 데이터 넣기
+    let html = `
+    <div class="">
+    <img class="" src="" alt="" />
+    <div class="">
+      <div class="">
+        <h1 class=""></h1>
+        <h1 class=""></h1>
+      </div>
+      <div class="">
+        <div>
+          <span class=""></span>
+          <span></span>
+        </div>
+        <div>
+          <span class=""></span>
+          <span></span>
+        </div>
+        <div>
+          <span class=""></span>
+          <span></span>
+        </div>
+        <div>
+          <span class=""></span>
+          <span>6.4</span>
+        </div>
+        <div>
+          <span class=""></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+    `;
   })
   .catch((err) => console.error(err));
