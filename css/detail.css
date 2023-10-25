@@ -1,0 +1,38 @@
+.header {
+  width: auto;
+  height: 100px;
+}
+.center {
+  width: auto;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.Flex_c {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.w-30 {
+  width: 30%;
+}
+.p_07 {
+  padding: 0 7%;
+}
+.p_70 {
+  margin: 7% 0;
+}
+
+.gap {
+  display: grid;
+  gap: 20% 0;
+}
+.font30 {
+  font-size: 30px;
+}
