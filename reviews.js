@@ -170,6 +170,7 @@ const toggleLike = function (id) {
   reviewData["like"] = reviewData["like"] + 1;
   let changeReviewData = JSON.stringify(reviewData);
   localStorage.setItem(id, changeReviewData);
+  window.location.reload();
 };
 
 document.addEventListener("click", function (e) {
@@ -187,13 +188,17 @@ document.querySelectorAll(".btn_delete").forEach((item) => {
 
 document.querySelectorAll(".btn_modify").forEach((item) => {
   item.addEventListener("click", function () {
+    const itemTextArea = this.parentElement.parentElement.querySelector(
+      ".text-area .text-modify"
+    );
+
     //수정할 대상의 Key를 가져오기
     const key = item.dataset.key;
     // 해당 Key에 저장된 데이터 가져오기
     const reviewCard = localStorage.getItem(key);
     let reviewData = JSON.parse(reviewCard);
     //textarea 변수 저장 textarea 클래스명 : .text-modify
-    let textModify = document.querySelector(".text-modify").value;
+    let textModify = itemTextArea.value;
     //textarea에 담은 데이터를 reviewData.text에 저장함
     reviewData.comments = textModify;
     //reviewData.push("텍스트"); -> 실패 ㅠ
