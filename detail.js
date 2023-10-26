@@ -57,7 +57,7 @@ await fetch(movieDetailUrl, options)
     
     <div class="story">
      <div class="padding_15">
-      <h1 class="content_headtitle margin_b margin_t">줄거리</h1>
+      <h1 class="content_headtitle margin_b margin_t synopsis">줄거리</h1>
        <p class="content_font">${movie_overview}</p>
       </div>
     </div>
