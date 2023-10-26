@@ -462,4 +462,43 @@
   border: none;
   margin-top: 60px;
   resize: none;
+  width: 100%;
+  font-family: inherit;
+  font-weight: normal;
+  outline: none;
+  font-size: 1.6rem;
+  padding: 10px 5px;
+  box-sizing: border-box;
+  display: none;
+}
+
+.btn_modify,
+.btn_delete,
+.like-btn,
+.btn_confirm,
+.btn_cancel {
+  background-color: #ff7591;
+  color: #fff;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn_confirm,
+.btn_cancel {
+  display: none;
+}
+
+.like-btn:hover {
+  background-color: #fff;
+  color: #ff7591;
+}
+
+.btn_delete:hover {
+  background-color: #fff;
+  color: #ff7591;
+}
+.btn_modify:hover {
+  background-color: #fff;
+  color: #ff7591;
 }
