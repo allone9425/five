@@ -30,42 +30,40 @@ await fetch(movieDetailUrl, options)
 
     // 아래에 제목, 평점 등등 구간에 맞게 데이터 넣기
     let temp_html = `
-    <div class="box Flex p_07" style="background-color:beige">
-    <img class="w-30" src="https://image.tmdb.org/t/p/original${movie_poster}"/>
-    <div class="Flex_c pl_13 font40" style="background-color:skyblue">
-      <div class="" style="background-color:orange">
-        <h1 class=""><string>${movie_title}</string></h1>
-        <h1 class=""><string>${movie_original_title}</string></h1>
+    <div class="container">
+    <div class="img">
+      <img class="poster" src="https://image.tmdb.org/t/p/original${movie_poster}"/>
+    </div>
+    <div class="content">
+      <div class="titlebox">
+        <h1 class="content_headtitle">${movie_title}</h1>
+        <h1 class="content_headtitle margin_b">${movie_original_title}</h1>
       </div>
-      <div class="gap font50 m_40">
-        <div>
-          <span class="">개봉 :</span>
-          <span>${movie_date}</span>
-        </div>
-        <div>
-          <span class="">평점 :</span>
-          <span>${movie_rating}점</span>
-        </div>
-        <div>
-          <span class="">상영 시간 : </span>
-          <span>${movie_runtime}분</span>
-        </div>
-        <div>
-              <button class="review_btn font25" id="review_btn">
-                리뷰 남기기
-              </button>
-          </div>
-        </div>
+      <div class="">
+      <div class="margin_b content_font">
+      <span class="">개봉 : </span>
+      <span>${movie_date}</span>
+      </div>
+      <div class="margin_b content_font">
+      <span class="">평점 : </span>
+      <span>${movie_rating}점</span>
+      </div>
+      <div class="margin_b content_font">
+      <span>상영 시간 : </span>
+      <span>${movie_runtime}분</span>
       </div>
     </div>
+    </div>
     
-    <div class="w-30 Flex_c p_07 m_70 gap"  style="background-color:yellowgreen">
-      <div class="font50">줄거리</div>
-      <div>${movie_overview}</div>
+    <div class="story">
+     <div class="padding_15">
+      <h1 class="content_headtitle margin_b margin_t">줄거리</h1>
+       <p class="content_font">${movie_overview}</p>
+      </div>
     </div>
     `;
     document
-      .querySelector(".detailbox")
+      .querySelector(".container")
       .insertAdjacentHTML("beforeend", temp_html);
   });
 
