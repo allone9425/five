@@ -47,7 +47,7 @@ nav_search.addEventListener("click", function () {
 /*TMDB설치*/
 document.addEventListener("DOMContentLoaded", function () {
   let movie_url =
-    "https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&api_key=3508739bb6efd7ac5c0d7987f4f50eee";
+    "https://api.themoviedb.org/3/movie/popular?language=ko-KR&api_key=3508739bb6efd7ac5c0d7987f4f50eee";
   fetch(movie_url)
     .then((res) => res.json())
     .then((data) => {
@@ -78,7 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
       //
       movie_cards_box.forEach(function (card) {
         card.addEventListener("click", function () {
-          alert("선택한 영화: " + card.id);
+          // alert("선택한 영화: " + card.id); // ID alert창 -> 상세페이지 이동으로 변경
+          let movieId = this.id;
+          let movieDetailUrl = `review.html?id=${movieId}`;
+          window.location.href = movieDetailUrl;
         });
       });
     });
