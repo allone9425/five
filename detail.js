@@ -30,7 +30,7 @@ await fetch(movieDetailUrl, options)
 
     // 아래에 제목, 평점 등등 구간에 맞게 데이터 넣기
     let temp_html = `
-    <div class="container">
+  
     <div class="img">
       <img class="poster" src="https://image.tmdb.org/t/p/original${movie_poster}"/>
     </div>
