@@ -1,4 +1,4 @@
-import { slangFilter } from "./slangFilter.js";
+import { slangFilter, userFilter, userPW, userInput } from "./filter.js";
 
 //닫기
 document
@@ -11,6 +11,7 @@ document
   .querySelector(".check_pw_btn_close")
   .addEventListener("click", function () {
     document.querySelector(".check_pw").style.display = "none";
+    document.querySelector(".check_pw_frame").style.display = "none";
   });
 
 document
@@ -33,6 +34,16 @@ document
       if (slangFilter(reviewComments)) {
         throw new Error("비속어가 포함되었습니다. 다시 입력해주세요");
       }
+
+      if (!userFilter(reviewUser)) {
+        throw new Error("작성자를 입력하세요.");
+      }
+      if (!userPW(reviewPassword)) {
+        throw new Error("패스워드를 입력하세요");
+      }
+      if (!userInput(reviewComments)) {
+        throw new Error("내용을 입력하세요");
+      }
       // 리뷰 정보를 JSON.stringify를 이용하여 문자열화.
       const reviewObject = {
         user: reviewUser,
@@ -42,17 +53,17 @@ document
         like: 0,
       };
       const reviewObjectString = JSON.stringify(reviewObject);
-      // // localStorage 중 현재 ID의 영화 리뷰 키를 필터링하는 코드
-      // const thisMovieReviews = Object.keys(localStorage).filter((review) =>
-      //   // 영화 고유한 id가 들어가야함
-      //   review.includes("123")
-      // );
+      // localStorage 중 현재 ID의 영화 리뷰 키를 필터링하는 코드
+      const thisMovieReviews = Object.keys(localStorage).filter((review) =>
+        // 영화 고유한 id가 들어가야함
+        review.includes("123")
+      );
 
-      const reviewId = new Date().getTime() + Math.random();
+      const reviewId = Date.now();
       // 필터링한 현재영화 리뷰의 수를 파악하여 댓글에 ID(인덱스)를 주는 과정
       localStorage.setItem(`${123}_${reviewId}`, reviewObjectString);
     } catch (err) {
-      alert("error.message");
+      alert(err);
       e.preventDefault();
     }
   });
@@ -92,6 +103,13 @@ document
       document.querySelector(".review_input_box").style.display = "none";
     }
   });
+document
+  .querySelector(".check_pw_frame")
+  .addEventListener("click", function (e) {
+    if (e.target == document.querySelector(".check_pw_frame")) {
+      document.querySelector(".check_pw_frame").style.display = "none";
+    }
+  });
 
 // 별점 숫자 표시
 document.querySelectorAll(".star_radio").forEach((item) => {
@@ -111,36 +129,6 @@ document.querySelector(".btn_top").addEventListener("click", function (event) {
   });
 });
 
-//검색버튼 누르면 되게하기
-document
-  .querySelector(".search_btn")
-  .addEventListener("click", function (event) {
-    event.preventDefault();
-  });
-
-//검색버튼을 클릭하면 나타나고 클릭하면 닫기
-//
-let nav_search = document.querySelector(".nav_search");
-let search_box = document.getElementById("movie_search");
-nav_search.addEventListener("click", function () {
-  if (search_box.classList.contains("hide")) {
-    search_box.classList.add("show");
-    search_box.classList.remove("hide");
-  } else {
-    search_box.classList.add("hide");
-    search_box.classList.remove("show");
-  }
-
-  // 검색창 옆에 X 클릭하면 닫기
-  document
-    .querySelector(".search_btn_close")
-    .addEventListener("click", function () {
-      let search_box = document.getElementById("movie_search");
-      search_box.classList.add("hide");
-      search_box.classList.remove("show");
-    });
-});
-
 const addCard = () => {
   const card_box = document.querySelector(".card-container__card");
   const thisMovieReviews = Object.keys(localStorage).filter((review) =>
@@ -151,6 +139,7 @@ const addCard = () => {
   thisMovieReviews.forEach((CardKey) => {
     //데이터 불러오기
     const reviewCard = localStorage.getItem(CardKey);
+    //console.log("리뷰" + reviewCard);
     let reviewData = JSON.parse(reviewCard);
     //만들기
     let temp = `
@@ -216,6 +205,7 @@ document.querySelectorAll(".btn_delete").forEach((item) => {
     document.querySelector(".check_pw").dataset["key"] = item.dataset["key"];
     document.querySelector(".check_pw").dataset["mode"] = "delete";
     document.querySelector(".check_pw").style.display = "block";
+    document.querySelector(".check_pw_frame").style.display = "block";
   });
 });
 document.querySelectorAll(".btn_modify").forEach((item) => {
@@ -224,6 +214,7 @@ document.querySelectorAll(".btn_modify").forEach((item) => {
     document.querySelector(".check_pw").dataset["mode"] = "modify";
 
     document.querySelector(".check_pw").style.display = "block";
+    document.querySelector(".check_pw_frame").style.display = "block";
   });
 });
 
@@ -258,7 +249,8 @@ document.querySelector(".check_pw_btn").addEventListener("click", function () {
       document.querySelector(
         `.btn_delete[data-key="${currentReviewKey}"]`
       ).style.display = "none";
-      this.parentElement.style.display = "none";
+      this.parentElement.parentElement.style.display = "none";
+      // this.parentElement.style.display = "none";
     }
   } else {
     alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요");
@@ -282,11 +274,11 @@ document.querySelectorAll(".btn_confirm").forEach((item) => {
     let textModify = itemTextArea.value;
     //textarea에 담은 데이터를 reviewData.text에 저장함
     reviewData.comments = textModify;
-    localStorage.setItem(key, reviewData);
-    console.log(localStorage.setItem(key, reviewData));
+    localStorage.setItem(key, JSON.stringify(reviewData));
     console.log("reviewData.text는" + reviewData.comments); //첫번째 입력값만 됨
     console.log("reviewData는" + reviewData);
     console.log("item.dataset[key]는" + item.dataset["key"]); //각각 맞게 찍힘
+    window.location.reload();
   });
 });
 

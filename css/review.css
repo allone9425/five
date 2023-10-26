@@ -1,5 +1,5 @@
 .review-container {
-  margin: 100px 60px;
+  margin: 100px auto;
 }
 
 .header-container {
@@ -409,7 +409,15 @@
   background-color: #ff7591;
   border-radius: 4px;
 }
-
+.check_pw_frame {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
 .check_pw {
   background-color: #ddd;
   width: 30%;
@@ -501,4 +509,38 @@
 .btn_modify:hover {
   background-color: #fff;
   color: #ff7591;
+}
+@media all and (max-width: 971px) {
+  .btn_modify,
+  .btn_delete,
+  .like-btn,
+  .btn_confirm,
+  .btn_cancel {
+    padding: 6px;
+  }
+}
+
+@media all and (max-width: 923px) {
+  .btn_modify,
+  .btn_delete,
+  .like-btn,
+  .btn_confirm,
+  .btn_cancel {
+    padding: 5px;
+  }
+}
+
+.nav_back a {
+  width: 100%;
+  text-align: center;
+}
+
+#footer {
+  padding: 30px 0;
+  word-break: keep-all;
+  background-color: #ffb6c1;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
 }

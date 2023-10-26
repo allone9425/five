@@ -18,33 +18,23 @@
             <li class="nav_search" onselectstart="return false">검색</li>
           </ul> -->
 
-            <p class="nav_search" onselectstart="return false">
-              검색 &#128269;
+            <p class="nav_back" onselectstart="return false">
+              <a href="index.html">&#9664; 뒤로</a>
             </p>
           </nav>
         </div>
         <!--inner-->
       </header>
-      
-    <section id="search">
-      <div id="movie_search" class="hide">
-        <form class="search_box_frame">
-          <input type="text" class="search_txt" placeholder="검색하고 싶은 영화 제목을 입력하세요 :)"></input>
-          <button class="search_btn">&#128269;</button>
-        </form>
-        <button class="search_btn_close"> &#128473;</button>
-      </div>
-    </section>
+
       <!-- 리뷰 -->
-      <section class="review-container">
+      <section class="review-container max">
         <div class="header-container">
           <h2>리뷰</h2>
           <p id="review_btn_open">작성하기</p>
         </div>
 
         <div class="card-container">
-          <ul>
-          </ul>
+          <ul></ul>
         </div>
       </section>
 
@@ -56,7 +46,7 @@
           <!--footer_logo-->
           <div class="footer_txt">
             <p>사랑특별시 행복구 설렘대로 1004</p>
-            <p>대표자명 : 이다원</p>
+            <p>팀장: 이다원 | 팀원: 김명섭 김지예 최광희 윤홍상</p>
             <p>allone9425@gmail.com</p>
             <p>COPYRIGHT 2023 © Today Movie ALL RIGHT RESERVED.</p>
           </div>
@@ -65,14 +55,20 @@
           <div class="footer_shortcut_box">
             <div class="footer_shortcut">
               <div class="footer_shortcut_txt">
-                <a href="https://github.com/allone9425" target="_blank"></a>
-                <p>Dawon's Git Hub</p>
+                <a
+                  href="https://github.com/allone9425/five"
+                  target="_blank"
+                ></a>
+                <p>어서오조 Git Hub</p>
               </div>
               <!---shortcut_txt-->
 
               <div class="footer_shortcut_txt">
-                <a href="https://velog.io/@dawnrose" target="_blank"></a>
-                <p>Dawon's Velog</p>
+                <a
+                  href="https://welcome-five.notion.site/c9004ea4b47d47f18a7b2046bd97e3c5?pvs=4"
+                  target="_blank"
+                ></a>
+                <p>어서오조 Notion</p>
               </div>
               <!---shortcut_txt-->
 
@@ -101,9 +97,8 @@
     <!--wrap-->
     <div class="review_input_box">
       <form action="" class="review_input_box_frame">
-        <p class="review_input_tit">영화제목</p>   
+        <p class="review_input_tit">영화제목</p>
         <fieldset>
-         
           <input
             type="text"
             name=""
@@ -149,45 +144,87 @@
                 <label for="starpoint_10" class="label_star" title="5"
                   ><span class="blind">5점</span></label
                 >
-                <input type="radio" name="starpoint" id="starpoint_1" class="star_radio" />
-                <input type="radio" name="starpoint" id="starpoint_2" class="star_radio" />
-                <input type="radio" name="starpoint" id="starpoint_3" class="star_radio" />
-                <input type="radio" name="starpoint" id="starpoint_4" class="star_radio" />
-                <input type="radio" name="starpoint" id="starpoint_5" class="star_radio" />
-                <input type="radio" name="starpoint" id="starpoint_6" class="star_radio" />
-                <input type="radio" name="starpoint" id="starpoint_7" class="star_radio" />
-                <input type="radio" name="starpoint" id="starpoint_8" class="star_radio" />
-                <input type="radio" name="starpoint" id="starpoint_9" class="star_radio" />
-                <input type="radio" name="starpoint" id="starpoint_10" class="star_radio" />
+                <input
+                  type="radio"
+                  name="starpoint"
+                  id="starpoint_1"
+                  class="star_radio"
+                />
+                <input
+                  type="radio"
+                  name="starpoint"
+                  id="starpoint_2"
+                  class="star_radio"
+                />
+                <input
+                  type="radio"
+                  name="starpoint"
+                  id="starpoint_3"
+                  class="star_radio"
+                />
+                <input
+                  type="radio"
+                  name="starpoint"
+                  id="starpoint_4"
+                  class="star_radio"
+                />
+                <input
+                  type="radio"
+                  name="starpoint"
+                  id="starpoint_5"
+                  class="star_radio"
+                />
+                <input
+                  type="radio"
+                  name="starpoint"
+                  id="starpoint_6"
+                  class="star_radio"
+                />
+                <input
+                  type="radio"
+                  name="starpoint"
+                  id="starpoint_7"
+                  class="star_radio"
+                />
+                <input
+                  type="radio"
+                  name="starpoint"
+                  id="starpoint_8"
+                  class="star_radio"
+                />
+                <input
+                  type="radio"
+                  name="starpoint"
+                  id="starpoint_9"
+                  class="star_radio"
+                />
+                <input
+                  type="radio"
+                  name="starpoint"
+                  id="starpoint_10"
+                  class="star_radio"
+                />
                 <span class="starpoint_bg"></span>
               </div>
             </div>
           </div>
-          <div class="star_rating_number">
-            0
-          </div>
-          
+          <div class="star_rating_number">0</div>
+
           <textarea class="review_input_text" placeholder="내용"></textarea>
           <button class="review_input_btn">입력</button>
           <button type="button" class="review_btn_close">&#128473;</button>
         </fieldset>
       </form>
-    
+    </div>
+    <div class="check_pw_frame">
+      <div class="check_pw">
+        <p>비밀번호를 입력해주세요.</p>
+        <p><input type="password" class="check_pw_input" /></p>
+        <button class="check_pw_btn">확인</button>
+        <button class="check_pw_btn_close" type="button">취소</button>
+      </div>
     </div>
 
-    <div class="check_pw">
-      <p>비밀번호를 입력해주세요.</p>
-      <p><input type="password" class="check_pw_input"></p>
-      <button class="check_pw_btn">확인</button>
-      <button class="check_pw_btn_close" type="button">취소</button>
-    </div>
-
-    <div class="check_pw">
-      <p>비밀번호를 입력해주세요.</p>
-      <p><input type="password" class="check_pw_input"></p>
-      <button class="check_pw_btn">확인</button>
-      <button class="check_pw_btn_close" type="button">취소</button>
-    </div>
     <div class="btn_top" id="btn_top">&#8593;</div>
     <!--<script src="script.js" type="module"></script>-->
     <script src="reviews.js" type="module"></script>
