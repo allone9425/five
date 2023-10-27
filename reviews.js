@@ -5,6 +5,7 @@ document
   .querySelector(".review_btn_close")
   .addEventListener("click", function () {
     document.querySelector(".review_input_box").style.display = "none";
+    document.querySelector("body").style.overflow = "visible";
   });
 
 document
@@ -12,12 +13,14 @@ document
   .addEventListener("click", function () {
     document.querySelector(".check_pw").style.display = "none";
     document.querySelector(".check_pw_frame").style.display = "none";
+    document.querySelector("body").style.overflow = "visible";
   });
 
 document
   .getElementById("review_btn_open")
   .addEventListener("click", function () {
     document.querySelector(".review_input_box").style.display = "block";
+    document.querySelector("body").style.overflow = "hidden";
   });
 
 document
@@ -79,6 +82,7 @@ document
   .addEventListener("click", function (e) {
     if (e.target == document.querySelector(".review_input_box")) {
       document.querySelector(".review_input_box").style.display = "none";
+      document.querySelector("body").style.overflow = "visible";
     }
   });
 document
@@ -193,6 +197,7 @@ document.querySelectorAll(".btn_delete").forEach((item) => {
     document.querySelector(".check_pw").dataset["key"] = item.dataset["key"];
     document.querySelector(".check_pw").dataset["mode"] = "delete";
     document.querySelector(".check_pw").style.display = "block";
+    document.querySelector("body").style.overflow = "hidden";
     document.querySelector(".check_pw_frame").style.display = "block";
   });
 });
@@ -202,6 +207,7 @@ document.querySelectorAll(".btn_modify").forEach((item) => {
     document.querySelector(".check_pw").dataset["mode"] = "modify";
 
     document.querySelector(".check_pw").style.display = "block";
+    document.querySelector("body").style.overflow = "hidden";
     document.querySelector(".check_pw_frame").style.display = "block";
   });
 });
