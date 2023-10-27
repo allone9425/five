@@ -1,6 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 export let movieId = urlParams.get("id");
-console.log(movieId);
+// console.log(movieId);
 
 const movieDetailUrl = `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`;
 
@@ -29,7 +29,7 @@ await fetch(movieDetailUrl, options)
     let movie_poster = data["poster_path"];
     let movie_date = data["release_date"];
     let movie_runtime = data["runtime"];
-    console.log(data);
+    //console.log(data);
 
     // 상세페이지 영화카드에 overview 데이터가 없을때 "줄거리가 없습니다."라고 출력
     if (!movie_overview) {
