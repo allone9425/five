@@ -1,7 +1,5 @@
-let movieId;
-
 const urlParams = new URLSearchParams(window.location.search);
-movieId = urlParams.get("id");
+export let movieId = urlParams.get("id");
 console.log(movieId);
 
 const movieDetailUrl = `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`;
@@ -22,15 +20,24 @@ await fetch(movieDetailUrl, options)
     let movie_title = data["title"];
     let movie_original_title = data["original_title"];
     let movie_overview = data["overview"];
-    let movie_rating = data["vote_average"].toFixed(1);
+    let movie_rating = data["vote_average"];
+    if (typeof movie_rating !== "undefined") {
+      movie_rating = movie_rating.toFixed(1);
+    } else {
+      movie_rating = "N/A"; // 또는 다른 기본값 설정
+    }
     let movie_poster = data["poster_path"];
     let movie_date = data["release_date"];
     let movie_runtime = data["runtime"];
     console.log(data);
 
+    // 상세페이지 영화카드에 overview 데이터가 없을때 "줄거리가 없습니다."라고 출력
+    if (!movie_overview) {
+      movie_overview = "줄거리가 없습니다.";
+    }
+
     // 아래에 제목, 평점 등등 구간에 맞게 데이터 넣기
-    let temp_html = `
-  
+    let temp_html = ` 
     <div class="img">
       <img class="poster" src="https://image.tmdb.org/t/p/original${movie_poster}"/>
     </div>
@@ -58,7 +65,7 @@ await fetch(movieDetailUrl, options)
     <div class="story">
      <div class="padding_15">
       <h1 class="content_headtitle margin_b margin_t synopsis">줄거리</h1>
-       <p class="content_font">${movie_overview}</p>
+       <p class="content_font synopsis_txt">${movie_overview}</p>
       </div>
     </div>
     `;

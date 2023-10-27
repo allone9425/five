@@ -1,5 +1,5 @@
 import { slangFilter, userFilter, userPW, userInput } from "./filter.js";
-
+import { movieId } from "./detail.js";
 //닫기
 document
   .querySelector(".review_btn_close")
@@ -24,12 +24,17 @@ document
   .querySelector(".review_input_box_frame")
   .addEventListener("submit", function (e) {
     try {
+      e.preventDefault();
+
       const reviewUser = document.querySelector(".review_input_name").value;
       const reviewPassword = document.querySelector(".review_input_pw").value;
       const reviewComments = document.querySelector(".review_input_text").value;
       const reviewRate = document.querySelector(
         ".star_rating_number"
       ).innerText;
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const movieId = urlParams.get("id");
 
       if (slangFilter(reviewComments)) {
         throw new Error("비속어가 포함되었습니다. 다시 입력해주세요");
@@ -56,45 +61,18 @@ document
       // localStorage 중 현재 ID의 영화 리뷰 키를 필터링하는 코드
       const thisMovieReviews = Object.keys(localStorage).filter((review) =>
         // 영화 고유한 id가 들어가야함
-        review.includes("123")
+        review.includes(movieId)
       );
 
       const reviewId = Date.now();
       // 필터링한 현재영화 리뷰의 수를 파악하여 댓글에 ID(인덱스)를 주는 과정
-      localStorage.setItem(`${123}_${reviewId}`, reviewObjectString);
+      localStorage.setItem(`${movieId}_${reviewId}`, reviewObjectString);
+      window.location.reload();
     } catch (err) {
       alert(err);
       e.preventDefault();
     }
   });
-
-/* if (slangFilter(reviewComments)) {
-      alert("비속어가 포함되었습니다. 다시 입력해주세요");
-      e.preventDefault();
-      return; 
-    }
-    // 리뷰 정보를 JSON.stringify를 이용하여 문자열화.
-    const reviewObject = {
-      user: reviewUser,
-      pw: reviewPassword,
-      comments: reviewComments,
-      rate: reviewRate,
-      like: 0,
-    };
-    const reviewObjectString = JSON.stringify(reviewObject);
-
-    // localStorage 중 현재 ID의 영화 리뷰 키를 필터링하는 코드
-    const thisMovieReviews = Object.keys(localStorage).filter((review) =>
-      // 영화 고유한 id가 들어가야함
-      review.includes("123")
-    );
-
-    // 필터링한 현재영화 리뷰의 수를 파악하여 댓글에 ID(인덱스)를 주는 과정
-    localStorage.setItem(
-      `${123}_${thisMovieReviews.length + 1}`,
-      reviewObjectString
-    );
-  });*/
 
 document
   .querySelector(".review_input_box")
@@ -131,9 +109,19 @@ document.querySelector(".btn_top").addEventListener("click", function (event) {
 
 const addCard = () => {
   const card_box = document.querySelector(".card-container__card");
+  document.querySelectorAll(".movie-item").forEach((item) => {
+    item.addEventListener("click", function () {
+      const movieId = item.dataset.movieId;
+      showReviewsForMovie(movieId);
+    });
+  });
+  function showReviewsForMovie(movieId) {
+    document.querySelector(".card-container ul").innerHTML = "";
+  }
+
   const thisMovieReviews = Object.keys(localStorage).filter((review) =>
     // 영화 고유한 id가 들어가야함
-    review.includes("123")
+    review.includes(movieId)
   );
 
   thisMovieReviews.forEach((CardKey) => {

@@ -60,6 +60,11 @@ document.addEventListener("DOMContentLoaded", function () {
         let movie_date = movie_box["release_date"];
         let movie_id = movie_box["id"];
 
+        // 메인페이지 영화카드에 overview 데이터가 없을때 "줄거리가 없습니다."라고 출력
+        if (!movie_overview) {
+          movie_overview = "줄거리가 없습니다.";
+        }
+
         let movie_year = movie_date.substring(0, 4); //2023-10-10 이렇게 나오는것을 2023만 출력하기 위해서 사용
 
         let temp_html = `    <div class="card" id="${movie_id}">
@@ -90,13 +95,28 @@ document.addEventListener("DOMContentLoaded", function () {
 document.querySelector(".search_btn").addEventListener("click", function () {
   let searchText = document.querySelector(".search_txt").value;
   let search_movie_list = document.querySelectorAll(".card .title"); //search_movie_list.length의 길이가 '20'으로 출력됨을 확인함
+  let searchCount = 0;
+
+  // 검색어가 입력되지 않았을 시 처리
+  if (searchText.length === 0) {
+    alert("검색어를 입력해주세요");
+    return;
+  }
+
   // 3. 만약에 영화제목(input 텍스트에 입력한 값이)랑
-  for (i = 0; i <= search_movie_list.length; i++) {
+  for (i = 0; i < search_movie_list.length; i++) {
     if (search_movie_list[i].innerHTML.includes(searchText)) {
       search_movie_list[i].parentElement.style = "display:block";
+      searchCount++;
     } else {
       search_movie_list[i].parentElement.style = "display:none";
     }
+  }
+
+  // 영화 검색결과가 없을 시 alert 메세지 출력, 최초화면으로 새로고침
+  if (searchCount === 0) {
+    alert("검색결과가 없습니다.");
+    window.location.reload();
   }
 
   //console.log(document.querySelectorAll('.card .title').length);
