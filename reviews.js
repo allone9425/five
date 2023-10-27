@@ -244,6 +244,7 @@ document.querySelector(".check_pw_btn").addEventListener("click", function () {
         `.btn_delete[data-key="${currentReviewKey}"]`
       ).style.display = "none";
       this.parentElement.parentElement.style.display = "none";
+      document.querySelector("body").style.overflow = "visible";
       // this.parentElement.style.display = "none";
     }
   } else {
@@ -272,6 +273,7 @@ document.querySelectorAll(".btn_confirm").forEach((item) => {
     console.log("reviewData.text는" + reviewData.comments); //첫번째 입력값만 됨
     console.log("reviewData는" + reviewData);
     console.log("item.dataset[key]는" + item.dataset["key"]); //각각 맞게 찍힘
+
     window.location.reload();
   });
 });
