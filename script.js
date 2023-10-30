@@ -1,6 +1,6 @@
 // 카드를 클릭하면 모달창 띄우기
 const cards_box = document.getElementsByClassName("card");
-for (var i = 0; i < cards_box.length; i++) {
+for (let i = 0; i < cards_box.length; i++) {
   cards_box[i].addEventListener("click", function () {
     alert(this.textContent);
   });
@@ -123,7 +123,7 @@ document.querySelector(".search_btn").addEventListener("click", function () {
 });
 
 window.addEventListener("scroll", function () {
-  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
   if (scrollTop >= 3377) {
     document.getElementById("btn_top").classList.add("btn_location");
